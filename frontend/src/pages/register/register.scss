@@ -1,0 +1,107 @@
+@import "../../style.scss";
+
+.register {
+  min-height: 100vh;
+  background-color: #ececec;
+  @include display-flex;
+  .register-container {
+    display: flex;
+    height: 700px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    @include sm {
+      flex-direction: column-reverse;
+      min-height: 100vh;
+      border-radius: 0;
+    }
+    @include xs {
+      height: 100vh;
+    }
+    .container--left {
+      flex: 1;
+      background-color: white;
+      color: gray;
+      @include display-flex(center, center, column, 3rem);
+      @include sm {
+        gap: 2rem;
+        min-height: 80%;
+      }
+      header {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      .input-field {
+        position: relative;
+        width: 80%;
+        input {
+          height: 2.25rem;
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid lightgray;
+          transition: 0.75s;
+          &::placeholder {
+            color: transparent;
+          }
+          &:focus,
+          &:not(:placeholder-shown) {
+            border-color: #2196f3;
+            ~ label {
+              top: -1rem;
+              font-size: 0.8rem;
+              color: #2196f3;
+            }
+          }
+        }
+        label {
+          transition: 0.5s;
+          position: absolute;
+          left: 0;
+          top: 0.75rem;
+        }
+        button {
+          background-color: lightgray;
+          padding: 0.5rem 0;
+          border-radius: 0.25rem;
+          width: 100%;
+          &:hover {
+            background-color: #2196f3;
+            color: white;
+          }
+        }
+      }
+      span {
+        font-size: 0.8rem;
+        text-align: left;
+        justify-self: left;
+        a {
+          transition: 0.3s;
+          border-bottom: 1px solid transparent;
+          &:hover {
+            color: #2196f3;
+            border-color: #2196f3;
+          }
+        }
+      }
+    }
+    .container--right {
+      flex: 1;
+      background: linear-gradient(#0000009b, #0000009b),
+        url("https://images.pexels.com/photos/1456951/pexels-photo-1456951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+      background-size: cover;
+      background-position: center;
+      color: whitesmoke;
+      font-size: 2rem;
+      @include display-flex;
+      .logo {
+        text-align: center;
+        display: block;
+        font-style: italic;
+        font-weight: 500;
+        color: #2196f3;
+      }
+      @include sm {
+        max-height: 20%;
+      }
+    }
+  }
+}

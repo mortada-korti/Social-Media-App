@@ -1,0 +1,100 @@
+@import "../../style.scss";
+
+.topBar {
+  @include themify($themes) {
+    z-index: 999;
+    height: 55px;
+    border-bottom: 1px solid themed(border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    background-color: themed(bg);
+    color: themed(text);
+    @include display-flex(space-between, center);
+    & > div {
+      height: 55px;
+      @include display-flex(center, center, row, 2rem);
+    }
+    & a {
+      transition: 0.3s;
+      color: themed(textSoft);
+      &:hover {
+        color: themed(text);
+      }
+    }
+    @include md {
+      padding: 0 1rem;
+    }
+    @include sm {
+      padding: 0 0.2rem;
+    }
+    .nav--left {
+      justify-content: flex-start;
+      span {
+        font-weight: 500;
+        font-size: 1.4rem;
+        color: themed(main);
+      }
+      .nav--search {
+        position: relative;
+        @include md {
+          display: none;
+        }
+        input {
+          width: 100px;
+          transition: 0.5s;
+          border-radius: 1.5rem;
+          border: 1px solid themed(border);
+          padding: 0.25rem 0.25rem 0.25rem 1.75rem;
+          background-color: themed(bgSoft);
+          color: themed(text);
+          &:focus {
+            width: 300px;
+            border-color: themed(main);
+            padding-left: 1rem;
+            caret-color: themed(main);
+            ~ svg {
+              left: calc(300px - 30px);
+              color: themed(main);
+            }
+          }
+        }
+        svg {
+          transition: 0.5s ease-out;
+          color: themed(border);
+          position: absolute;
+          left: 0.25rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    .nav--mid {
+      @include xs {
+        gap: 1rem;
+        & > a:not(:nth-child(2)) {
+          display: none;
+        }
+      }
+    }
+    .nav--right {
+      justify-content: flex-end;
+      @include sm {
+        gap: 1rem;
+      }
+      .user {
+        gap: 1rem;
+        @include display-flex(center, center, row, 0.75rem);
+        img {
+          @include circle-img(2rem);
+        }
+        span {
+          font-weight: 500;
+          @include md {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

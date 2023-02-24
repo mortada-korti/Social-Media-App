@@ -1,0 +1,76 @@
+@import "../../style.scss";
+
+.share {
+  @include themify($themes) {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 2rem;
+    height: 200px;
+    background-color: themed(bg);
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    @include display-flex(flex-start, flex-start, column, 0);
+    @include sm {
+      max-width: 100%;
+      padding: 0 0.5rem;
+      height: 150px;
+    }
+    .top {
+      height: 80%;
+      width: 100%;
+      @include display-flex(flex-start, center, row, 1rem);
+      img {
+        @include circle-img(2.5rem);
+      }
+      input {
+        height: 2.5rem;
+        width: 90%;
+        background-color: themed(bg);
+        color: themed(text);
+        border: none;
+        @include sm {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    .bottom {
+      padding: 0.75rem 0;
+      border-top: 1px solid themed(border);
+      width: 100%;
+      @include display-flex(space-between, center, row, 2.5rem);
+      @include sm {
+        font-size: 0.8rem;
+      }
+      .items {
+        @include display-flex(flex-start, center, row, 2.5rem);
+        @include xs {
+          gap: 0.5rem;
+        }
+        .bottom--item {
+          @include display-flex(flex-start, center, row, 0.5rem);
+          img {
+            width: 1.25rem;
+            height: 1.25rem;
+          }
+          span {
+            font-size: 0.8rem;
+            color: themed(textSoft);
+            @include xs {
+              display: none;
+            }
+          }
+        }
+      }
+      button {
+        justify-self: flex-end;
+        background-color: themed(main);
+        padding: 0.125rem 0.75rem;
+        color: white;
+        border-radius: 0.5rem;
+        &:hover {
+          background-color: darken(themed(main), 20);
+        }
+      }
+    }
+  }
+}

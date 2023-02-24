@@ -1,0 +1,57 @@
+@import "../../style.scss";
+
+.leftBar {
+  @include themify($themes) {
+    background-color: themed(bg);
+    color: themed(textSoft);
+    position: sticky;
+    top: 55px;
+    height: calc(100vh - 55px);
+    overflow: scroll;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    @include md {
+      display: none;
+    }
+    .bar-container {
+      padding: 0.5rem;
+      @include display-flex(center, flex-start, column, 1.75rem);
+      .item {
+        @include display-flex(flex-start, center, row, 1rem);
+        img {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+        span {
+          font-size: 0.8rem;
+        }
+        &.user {
+          img {
+            @include circle-img(2rem);
+          }
+          span {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: themed(text);
+          }
+        }
+      }
+      hr {
+        border: none;
+        height: 0.5px;
+        background-color: themed(textSoft);
+        width: 90%;
+        margin: 0 auto;
+      }
+      .title {
+        color: themed(textSoft);
+        font-size: 0.8rem;
+      }
+      @include sm {
+        display: none;
+      }
+    }
+  }
+}

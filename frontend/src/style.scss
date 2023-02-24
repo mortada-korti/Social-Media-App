@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "_mixins.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: inherit;
+  }
+}
+$themes: (
+  dark: (
+    bg: #222,
+    bgSoft: #333,
+    border: #444,
+    text: whitesmoke,
+    textSoft: lightgray,
+    main: #2196f3,
+    second: #e91e63,
+  ),
+  light: (
+    bg: white,
+    bgSoft: #f6f3f3,
+    border: lightgray,
+    text: #222,
+    textSoft: gray,
+    main: #2196f3,
+    second: #e91e63,
+  ),
+);
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

@@ -1,0 +1,104 @@
+@import "../../style.scss";
+
+.rightBar {
+  @include themify($themes) {
+    background-color: themed(bgSoft);
+    min-width: 100%;
+    position: sticky;
+    top: 55px;
+    height: calc(100vh - 55px);
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    @include md {
+      display: none;
+    }
+    .bar-container {
+      padding: 1rem;
+      @include display-flex(flex-start, flex-start, column, 2rem);
+      .item {
+        width: 100%;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background-color: themed(bg);
+        color: themed(text);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        overflow: scroll;
+        &::-webkit-scrollbar {
+          display: none
+        }
+        @include display-flex(flex-start, flex-start, column, 2rem);
+        span {
+          font-size: 0.9rem;
+          color: themed(textSoft);
+        }
+        .user {
+          width: 100%;
+          @include display-flex(space-between, center, row);
+          .user-info {
+            @include display-flex(flex-start, center, row, 1rem);
+            position: relative;
+            .online {
+              position: absolute;
+              @include circle(0.55rem);
+              background-color: limegreen;
+              top: 0;
+              left: 1.45rem;
+            }
+            img {
+              @include circle-img(2rem);
+            }
+            p.activity {
+              margin: 0;
+              font-size: 0.8rem;
+              color: themed(textSoft);
+              font-weight: 300;
+              width: 75%;
+              span {
+                font-size: 0.9rem;
+                color: themed(text);
+                margin-right: 0.5rem;
+                font-weight: 500;
+              }
+            }
+            span {
+              font-weight: 500;
+              color: themed(text);
+            }
+          }
+          .date {
+            font-size: 0.7rem;
+            text-align: right
+          }
+          .buttons {
+            @include display-flex(space-between, center, row, 1rem);
+            button {
+              background-color: transparent;
+              padding: 0 0.5rem;
+              border-radius: 0.25rem;
+              font-size: 0.8rem;
+              font-weight: 500;
+              &:first-child {
+                color: themed(main);
+                border: 1px solid themed(main);
+                &:hover {
+                  background-color: themed(main);
+                  color: white;
+                }
+              }
+              &:last-child {
+                color: themed(second);
+                border: 1px solid themed(second);
+                &:hover {
+                  background-color: themed(second);
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

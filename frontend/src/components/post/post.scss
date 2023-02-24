@@ -1,0 +1,58 @@
+@import "../../style.scss";
+
+.post {
+  @include themify($themes) {
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 100%;
+    background-color: themed(bg);
+    color: themed(text);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    @include display-flex(center, flex-start, column, 1rem);
+    .top {
+        @include display-flex(flex-start, center, row, 1rem);
+      img {
+        @include circle-img(2.5rem);
+      }
+      span {
+        display: block;
+        color: themed(text);
+        font-weight: 500;
+        font-size: 1rem;
+        &.date {
+            font-size: 0.8rem;
+            color: themed(textSoft);
+            font-weight: normal;
+        }
+      }
+    }
+    .mid {
+        @include display-flex(center, flex-start, column, 1rem);
+      .title {
+        color: themed(textSoft);
+      }
+      img {
+        max-width: 100%;
+      }
+    }
+    .bottom {
+        font-size: 0.8rem;
+        color: themed(textSoft);
+        @include display-flex(flex-start, center, row, 1.5rem);
+        .icon {
+            cursor: pointer;
+            @include display-flex(flex-start, center, row, 0.5rem);
+            svg {
+              &.liked {
+                color: themed(second);
+              }
+            }
+            span {
+              @include xs {
+                display: none;
+              }
+            }
+        }
+    }
+  }
+}

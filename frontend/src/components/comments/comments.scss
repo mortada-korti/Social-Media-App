@@ -1,0 +1,47 @@
+@import "../../style.scss";
+
+.comments {
+  @include themify($themes) {
+    width: 100%;
+    @include display-flex(center, flex-start, column, 1rem);
+    .write-comment {
+      width: 100%;
+      @include display-flex(space-between, center, row, 1rem);
+      .user {
+        width: 100%;
+        height: 3rem;
+        @include display-flex(flex-start, center, row, 1rem);
+        img {
+          @include circle-img(2.25rem);
+        }
+        input {
+          background-color: themed(bgSoft);
+          color: themed(text);
+          border: 1px solid themed(border);
+          width: 100%;
+          height: 80%;
+          padding-left: 0.5rem;
+          border-radius: 1rem;
+          transition: 0.3s;
+          font-size: 0.9rem;
+          &:focus {
+            border-color: themed(main);
+          }
+          @include sm {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      button {
+        padding: 0.25rem 0.75rem;
+        background-color: themed(main);
+        border-radius: 0.25rem;
+        color: white;
+        font-size: 0.9rem;
+        &:hover {
+          background-color: darken(themed(main), 20);
+        }
+      }
+    }
+  }
+}

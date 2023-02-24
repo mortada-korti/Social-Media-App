@@ -1,0 +1,40 @@
+@import "../../style.scss";
+
+.comment {
+  @include themify($themes) {
+    width: 100%;
+    @include display-flex(space-between, flex-start, row, 1rem);
+    .left {
+      width: 90%;
+      @include display-flex(flex-start, flex-start, row, 1rem);
+      img {
+        @include circle-img(2.25rem);
+      }
+      span {
+        max-width: 100%;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: themed(text);
+        p {
+          font-weight: normal;
+          color: themed(textSoft);
+          font-size: 0.75rem;
+          word-break: break-all;
+          @include sm {
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+    .date {
+      color: themed(textSoft);
+      font-size: 0.7rem;
+      align-self: center;
+      text-align: right;
+      width: 15%;
+      @include xs {
+        display: none;
+      }
+    }
+  }
+}

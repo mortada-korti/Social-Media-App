@@ -1,0 +1,135 @@
+@import "../../style.scss";
+
+.profile {
+  @include themify($themes) {
+    background-color: themed(bgSoft);
+    color: themed(text);
+    min-height: 100vh;
+    .images {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      margin-bottom: 2rem;
+      @include sm {
+        margin-bottom: 1rem;
+        height: 150px;
+      }
+      img {
+        &.cover-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0 0 0.5rem 0.5rem;
+        }
+        &.profile-img {
+          @include circle-img(200px);
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 200px;
+          @include sm {
+            top: 100px;
+            @include circle-img(100px);
+          }
+        }
+      }
+    }
+    .profile-container {
+      padding: 0 2rem;
+      width: 100%;
+      @include display-flex(flex-start, center, column, 2rem);
+      @include sm {
+        padding: 0 1rem;
+      }
+      .profile-info {
+        border-radius: 1rem;
+        padding: 1rem;
+        height: 250px;
+        width: 100%;
+        background-color: themed(bg);
+        text-align: center;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        @include display-flex(center, center, column, 0.75rem);
+        @include lg {
+          height: 300px;
+        }
+        @include sm {
+          height: 200px;
+        }
+        .top {
+          font-size: 1.4rem;
+          color: themed(text);
+          font-weight: 500;
+        }
+        .mid {
+          width: 100%;
+          @include display-flex(space-between, center, row, 1rem);
+          @include lg {
+            @include display-flex(space-between, center, column, 0.25rem);
+          }
+          @include md {
+            @include display-flex(space-between, center, row, 0.25rem);
+          }
+          .socials {
+            flex: 1;
+            @include display-flex(flex-start, center, row, 1rem);
+            @include sm {
+              justify-content: center;
+            }
+            .icon {
+              color: themed(textSoft);
+              transition: 0.3s;
+              &:hover {
+                color: themed(text);
+              }
+            }
+          }
+          .info {
+            flex: 2;
+            @include display-flex(space-around, center, row, 1rem);
+            @include sm {
+              display: none;
+            }
+            a {
+              @include display-flex(flex-start, center, row, 0.25rem);
+              color: themed(textSoft);
+              transition: 0.3s;
+              &:hover {
+                color: themed(text);
+              }
+              span {
+                font-size: 0.8rem;
+                color: themed(textSoft);
+              }
+            }
+          }
+          .right {
+            flex: 1;
+            @include display-flex(flex-end, center, row, 1rem);
+            color: themed(textSoft);
+            @include sm {
+              display: none;
+            }
+            svg {
+              transition: 0.3s;
+              &:hover {
+                cursor: pointer;
+                color: themed(text);
+              }
+            }
+          }
+        }
+        button {
+          padding: 0.25rem 1rem;
+          color: white;
+          background-color: themed(main);
+          border: none;
+          border-radius: 0.5rem;
+          &:hover {
+            background-color: darken($color: themed(main), $amount: 20);
+          }
+        }
+      }
+    }
+  }
+}

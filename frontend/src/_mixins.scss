@@ -1,0 +1,60 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+@mixin xs {
+  @media (max-width: map-get($grid-breakpoints, "sm")) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (max-width: map-get($grid-breakpoints, "md")) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: map-get($grid-breakpoints, "lg")) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (max-width: map-get($grid-breakpoints, "xl")) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (max-width: map-get($grid-breakpoints, "xxl")) {
+    @content;
+  }
+}
+
+@mixin display-flex($var1: center, $var2: center, $var3: row, $var4: 0) {
+  display: flex;
+  justify-content: $var1;
+  align-items: $var2;
+  flex-direction: $var3;
+  gap: $var4;
+}
+
+@mixin circle($var: 1rem) {
+  min-width: $var;
+  max-width: $var;
+  min-height: $var;
+  max-height: $var;
+  border-radius: 50%;
+}
+
+@mixin circle-img($var) {
+  @include circle($var);
+  object-fit: cover;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    filter: brightness(0.75);
+  }
+}
