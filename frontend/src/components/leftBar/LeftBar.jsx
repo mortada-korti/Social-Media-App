@@ -3,17 +3,20 @@ import "./leftBar.scss";
 import main from "./data/main";
 import shortcuts from "./data/shortcuts";
 import others from "./data/others";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const LeftBar = () => {
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className='leftBar'>
       <div className='bar-container'>
         <div className='item user'>
-          <img
-            src='https://images.pexels.com/photos/1205033/pexels-photo-1205033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-            alt=''
-          />
-          <span>Mortada Korti</span>
+          <Link to={`profile/${currentUser.id}`}>
+            <img src={currentUser.profilePic} alt='' />
+            <span>{`${currentUser.first_name}  ${currentUser.last_name}`}</span>
+          </Link>
         </div>
         {main?.map((item) => (
           <div className='item' key={item.id}>
@@ -22,7 +25,7 @@ const LeftBar = () => {
           </div>
         ))}
         <hr />
-        <span className="title">Your Shortcuts</span>
+        <span className='title'>Your Shortcuts</span>
         {shortcuts?.map((item) => (
           <div className='item' key={item.id}>
             <img src={item.img} alt='' />
@@ -30,7 +33,7 @@ const LeftBar = () => {
           </div>
         ))}
         <hr />
-        <span className="title">Your Shortcuts</span>
+        <span className='title'>Your Shortcuts</span>
         {others?.map((item) => (
           <div className='item' key={item.id}>
             <img src={item.img} alt='' />

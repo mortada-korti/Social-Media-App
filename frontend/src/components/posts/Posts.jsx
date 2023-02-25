@@ -1,14 +1,24 @@
+import { useQuery } from "react-query";
+import axios from "axios";
 import Post from "../post/Post";
 import main from "./data/main";
+import { makeRequest } from "../../axios";
 import "./posts.scss";
 
 const Posts = () => {
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    makeRequest.get("/posts").then((res) => {
+      return res.data;
+    })
+  );
 
   return (
     <div className='posts'>
-      {main?.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {isLoading
+        ? "Loading..."
+        : error
+        ? "Something went wrong..."
+        : data?.map((post) => <Post key={post.id} post={post} />)}
     </div>
   );
 };

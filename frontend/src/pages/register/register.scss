@@ -15,7 +15,7 @@
       border-radius: 0;
     }
     @include xs {
-      height: 100vh;
+      min-height: 100vh;
     }
     .container--left {
       flex: 1;
@@ -29,6 +29,9 @@
       header {
         font-size: 1.5rem;
         font-weight: 500;
+      }
+      .errors {
+        color: red;
       }
       .input-field {
         position: relative;
@@ -75,6 +78,7 @@
         justify-self: left;
         a {
           transition: 0.3s;
+          font-weight: 500;
           border-bottom: 1px solid transparent;
           &:hover {
             color: #2196f3;

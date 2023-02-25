@@ -7,6 +7,7 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 // Pages
 import Login from "./pages/login/Login";
@@ -30,6 +31,7 @@ import "./style.scss";
 import { Col } from "react-bootstrap";
 
 const App = () => {
+  const queryClient = new QueryClient();
   const { darkMode } = useContext(DarkModeContext);
   const currentUser = useContext(AuthContext);
 
@@ -87,9 +89,9 @@ const App = () => {
   ]);
 
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </div>
+    </QueryClientProvider>
   );
 };
 

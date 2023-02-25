@@ -31,9 +31,11 @@
     .nav--left {
       justify-content: flex-start;
       span {
-        font-weight: 500;
-        font-size: 1.4rem;
-        color: themed(main);
+        a {
+          font-weight: 500;
+          font-size: 1.4rem;
+          color: themed(main);
+        }
       }
       .nav--search {
         position: relative;

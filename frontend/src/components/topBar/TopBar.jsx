@@ -23,7 +23,9 @@ const TopBar = () => {
   return (
     <div className='topBar'>
       <Col md={4} className='nav--left'>
-        <span>MyChat</span>
+        <span>
+          <Link to='/'>MyChat</Link>
+        </span>
         <div className='nav--search'>
           <input type='text' placeholder='Search' />
           <SearchOutlinedIcon />

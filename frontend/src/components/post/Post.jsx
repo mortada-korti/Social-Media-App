@@ -9,25 +9,27 @@ import React, { useState, useEffect } from "react";
 const Post = ({ post }) => {
   const [openComments, setOpenComments] = useState(false);
   const [liked, setLiked] = useState(false);
-
   return (
     <div className='post'>
       <div className='top'>
         <img src={post.profilePic} alt='' />
         <span>
-          {post.name}
+          {`${post.first_name} ${post.last_name}`}
           <span className='date'>a few seconds ago</span>
         </span>
       </div>
 
       <div className='mid'>
-        {post.title && <div className='title'>{post.title}</div>}
+        {post.desc && <div className='title'>{post.desc}</div>}
         {post.img && <img src={post.img} alt='' />}
       </div>
       <div className='bottom'>
         <div className='icon'>
           {liked ? (
-            <FavoriteOutlinedIcon className="liked" onClick={() => setLiked(!liked)} />
+            <FavoriteOutlinedIcon
+              className='liked'
+              onClick={() => setLiked(!liked)}
+            />
           ) : (
             <FavoriteBorderOutlinedIcon onClick={() => setLiked(!liked)} />
           )}

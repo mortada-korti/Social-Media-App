@@ -28,13 +28,16 @@
           font-size: 0.8rem;
         }
         &.user {
-          img {
-            @include circle-img(2rem);
-          }
-          span {
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: themed(text);
+          a {
+            @include display-flex(flex-start, center, row, 1rem);
+            img {
+              @include circle-img(2rem);
+            }
+            span {
+              font-weight: 500;
+              font-size: 0.9rem;
+              color: themed(text);
+            }
           }
         }
       }
