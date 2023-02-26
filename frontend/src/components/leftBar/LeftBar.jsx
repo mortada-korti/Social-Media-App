@@ -13,9 +13,9 @@ const LeftBar = () => {
     <div className='leftBar'>
       <div className='bar-container'>
         <div className='item user'>
-          <Link to={`profile/${currentUser.id}`}>
-            <img src={currentUser.profilePic} alt='' />
-            <span>{`${currentUser.first_name}  ${currentUser.last_name}`}</span>
+          <Link to={`profile/${currentUser?.id}`}>
+            <img src={currentUser?.profilePic} alt='' />
+            <span>{`${currentUser?.first_name}  ${currentUser?.last_name}`}</span>
           </Link>
         </div>
         {main?.map((item) => (

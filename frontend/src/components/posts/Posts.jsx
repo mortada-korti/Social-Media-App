@@ -6,7 +6,7 @@ import { makeRequest } from "../../axios";
 import "./posts.scss";
 
 const Posts = () => {
-  const { isLoading, error, data } = useQuery("repoData", () =>
+  const { isLoading, error, data } = useQuery(["posts"], () =>
     makeRequest.get("/posts").then((res) => {
       return res.data;
     })

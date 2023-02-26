@@ -1,8 +1,16 @@
 import "./comments.scss";
 import main from "./data/main";
 import Comment from "../comment/Comment";
+import { useQuery } from "react-query";
+import { makeRequest } from "../../axios";
 
-const Comments = () => {
+const Comments = ({postId}) => {
+  const { isLoading, error, data } = useQuery(["comments"], () =>
+    makeRequest.get(`/comments?postId=${postId}`).then((res) => {
+      return res.data;
+    })
+  );
+
   return (
     <div className='comments'>
       <div className='write-comment'>
@@ -15,7 +23,7 @@ const Comments = () => {
         </div>
         <button>Send</button>
       </div>
-      {main?.map((comment) => (
+      {data?.map((comment) => (
         <Comment comment={comment} key={comment.id} />
       ))}
     </div>

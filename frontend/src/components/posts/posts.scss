@@ -2,7 +2,7 @@
 
 .posts {
   @include themify($themes) {
-    max-width: 100%;
+    width: 100%;
     background-color: transparent;
     @include display-flex(center, flex-start, column, 2.5rem);
   }

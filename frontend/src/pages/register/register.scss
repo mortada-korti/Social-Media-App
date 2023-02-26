@@ -6,7 +6,7 @@
   @include display-flex;
   .register-container {
     display: flex;
-    height: 700px;
+    min-height: 700px;
     border-radius: 0.5rem;
     overflow: hidden;
     @include sm {

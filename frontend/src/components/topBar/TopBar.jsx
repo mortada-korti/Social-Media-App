@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { makeRequest } from "../../axios";
 
 // Icons
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -17,9 +18,22 @@ import { DarkModeContext } from "../../context/DarkModeContext";
 // Styles
 import "./topBar.scss";
 import { Col } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
 
 const TopBar = () => {
+  const navigate = useNavigate();
+
+  const { currentUser, logout } = useContext(AuthContext);
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+
   return (
     <div className='topBar'>
       <Col md={4} className='nav--left'>
@@ -53,17 +67,14 @@ const TopBar = () => {
 
       <Col md={4} className='nav--right'>
         <Link to=''>
-          <NotificationsNoneOutlinedIcon />
+          <NotificationsNoneOutlinedIcon onClick={handleLogout} />
         </Link>
         <Link to=''>
           <MailOutlineOutlinedIcon />
         </Link>
         <div className='user'>
-          <img
-            src='https://images.pexels.com/photos/1205033/pexels-photo-1205033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-            alt=''
-          />
-          <span>Mortada Korti</span>
+          <img src={currentUser?.profilePic} alt='' />
+          <span>{`${currentUser?.first_name} ${currentUser?.last_name}`}</span>
         </div>
       </Col>
     </div>

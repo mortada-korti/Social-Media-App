@@ -1,12 +1,14 @@
-import { Col } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import "./login.scss";
+import React, { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import React, { useState, useEffect } from "react";
+
+import { Col } from "react-bootstrap";
+import "./login.scss";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { currentUser, login } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -26,12 +28,17 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(inputs);
-      navigate("/");
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
     }
   };
+
+  useEffect(() => {
+    if (currentUser !== null) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   return (
     <div className='login'>

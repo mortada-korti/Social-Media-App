@@ -1,4 +1,7 @@
-import "./profile.scss";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
+// Icons
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -10,24 +13,20 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EmailIcon from "@mui/icons-material/Email";
 import Posts from "../../components/posts/Posts";
 
+// Style
+import "./profile.scss";
+
 const Profile = () => {
+  const { currentUser } = useContext(AuthContext);
   return (
     <div className='profile'>
       <div className='images'>
-        <img
-          className='cover-img'
-          src='https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-          alt=''
-        />
-        <img
-          className='profile-img'
-          src='https://images.pexels.com/photos/1205033/pexels-photo-1205033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
-          alt=''
-        />
+        <img className='cover-img' src={currentUser.coverPic} alt='' />
+        <img className='profile-img' src={currentUser.profilePic} alt='' />
       </div>
       <div className='profile-container'>
         <div className='profile-info'>
-          <span className='top'>Mortada Korti</span>
+          <span className='top'>{`${currentUser.first_name} ${currentUser.last_name}`}</span>
           <div className='mid'>
             <div className='socials'>
               <a href='#' className='icon'>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import "./register.scss";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({
     first_name: "",
     last_name: "",
@@ -24,8 +26,8 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8800/api/auth/register", inputs);
+      navigate("/login");
     } catch (error) {
-      console.log(error.response.data);
       setErrors(error.response.data);
     }
   };

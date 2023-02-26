@@ -1,3 +1,3 @@
-export const getUser = (req, res) => {
-  return res.send("haha");
-};
+export const getUsers = (req,res) => {
+    return res.send("hahah");
+}

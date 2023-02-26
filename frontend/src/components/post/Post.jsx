@@ -5,6 +5,7 @@ import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import Comments from "../comments/Comments";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 const Post = ({ post }) => {
   const [openComments, setOpenComments] = useState(false);
@@ -15,13 +16,13 @@ const Post = ({ post }) => {
         <img src={post.profilePic} alt='' />
         <span>
           {`${post.first_name} ${post.last_name}`}
-          <span className='date'>a few seconds ago</span>
+          <span className='date'>{moment(post.createdAt).fromNow()}</span>
         </span>
       </div>
 
       <div className='mid'>
         {post.desc && <div className='title'>{post.desc}</div>}
-        {post.img && <img src={post.img} alt='' />}
+        {post.img && <img src={`/uploads/${post.img}`} alt='' />}
       </div>
       <div className='bottom'>
         <div className='icon'>
@@ -44,7 +45,7 @@ const Post = ({ post }) => {
           <span>12 shares</span>
         </div>
       </div>
-      {openComments && <Comments />}
+      {openComments && <Comments postId={post.id} />}
     </div>
   );
 };

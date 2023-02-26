@@ -33,7 +33,7 @@ import { Col } from "react-bootstrap";
 const App = () => {
   const queryClient = new QueryClient();
   const { darkMode } = useContext(DarkModeContext);
-  const currentUser = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) return <Navigate to='/login' />;
