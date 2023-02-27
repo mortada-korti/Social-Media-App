@@ -15,58 +15,106 @@ import Posts from "../../components/posts/Posts";
 
 // Style
 import "./profile.scss";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { makeRequest } from "../../axios";
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
+  const userId = useLocation().pathname.split("/")[2];
+
+  const { isLoading, error, data } = useQuery(["users"], () =>
+    makeRequest.get(`/users/find/${userId}`).then((res) => {
+      return res.data;
+    })
+  );
+
+  const { data: relationshipData, isLoading: rIsLoading } = useQuery(
+    ["followers"],
+    () =>
+      makeRequest.get(`/followers?userId=${userId}`).then((res) => {
+        return res.data;
+      })
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // mutation.mutate()
+  };
   return (
     <div className='profile'>
-      <div className='images'>
-        <img className='cover-img' src={currentUser.coverPic} alt='' />
-        <img className='profile-img' src={currentUser.profilePic} alt='' />
-      </div>
-      <div className='profile-container'>
-        <div className='profile-info'>
-          <span className='top'>{`${currentUser.first_name} ${currentUser.last_name}`}</span>
-          <div className='mid'>
-            <div className='socials'>
-              <a href='#' className='icon'>
-                <FacebookOutlinedIcon />
-              </a>
-              <a href='#' className='icon'>
-                <InstagramIcon />
-              </a>
-              <a href='#' className='icon'>
-                <TwitterIcon />
-              </a>
-              <a href='#' className='icon'>
-                <LinkedInIcon />
-              </a>
-              <a href='#' className='icon'>
-                <GitHubIcon />
-              </a>
-            </div>
-            <div className='info'>
-              <a href='#'>
-                <LocationOnIcon />
-                <span>ALgeria</span>
-              </a>
-              <a href='#'>
-                <LanguageIcon />
-                <span>mora.com</span>
-              </a>
-            </div>
-            <div className='right'>
-              <a href='#'>
-                <EmailIcon />
-              </a>
-              <MoreVertIcon />
-            </div>
+      {isLoading ? (
+        "Loading..."
+      ) : error ? (
+        "Something Went Wrong..."
+      ) : (
+        <>
+          <div className='images'>
+            <img className='cover-img' src={data?.coverPic} alt='' />
+            <img className='profile-img' src={data?.profilePic} alt='' />
           </div>
-          <button>Follow</button>
-        </div>
+          <div className='profile-container'>
+            <form className='profile-info'>
+              <span className='top'>{`${data?.first_name} ${data?.last_name}`}</span>
+              {/* {data? && (
+            <span className='followers'>
+              {` (${data??.length} ${
+                data??.length === 1 ? "Follower" : "Followers"
+              })`}
+            </span>
+          )} */}
+              <div className='mid'>
+                <div className='socials'>
+                  <a href='#' className='icon'>
+                    <FacebookOutlinedIcon />
+                  </a>
+                  <a href='#' className='icon'>
+                    <InstagramIcon />
+                  </a>
+                  <a href='#' className='icon'>
+                    <TwitterIcon />
+                  </a>
+                  <a href='#' className='icon'>
+                    <LinkedInIcon />
+                  </a>
+                  <a href='#' className='icon'>
+                    <GitHubIcon />
+                  </a>
+                </div>
+                <div className='info'>
+                  <a href='#'>
+                    <LocationOnIcon />
+                    <span>{data?.city}</span>
+                  </a>
+                  <a href='#'>
+                    <LanguageIcon />
+                    <span>{data?.website}</span>
+                  </a>
+                </div>
+                <div className='right'>
+                  <a href='#'>
+                    <EmailIcon />
+                  </a>
+                  <MoreVertIcon />
+                </div>
+              </div>
+              {data?.id === currentUser.id ? (
+                <button>Update</button>
+              ) : (
+                <button>
+                  {rIsLoading
+                    ? "Loading..."
+                    : relationshipData?.includes(currentUser.id)
+                    ? "Following"
+                    : "Follow"}
+                </button>
+              )}
+            </form>
 
-        <Posts />
-      </div>
+            {/* <Posts /> */}
+          </div>
+        </>
+      )}
     </div>
   );
 };

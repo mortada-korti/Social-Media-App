@@ -1,5 +1,5 @@
 import "./comment.scss";
-
+import moment from "moment";
 const Comment = ({ comment }) => {
   return (
     <div className='comment'>
@@ -10,7 +10,7 @@ const Comment = ({ comment }) => {
           <p>{comment.desc}</p>
         </span>
       </div>
-      <span className='date'>1 hour ago</span>
+      <span className='date'>{moment(comment.createdAt).fromNow()}</span>
     </div>
   );
 };

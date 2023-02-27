@@ -1,7 +1,5 @@
 import { useQuery } from "react-query";
-import axios from "axios";
 import Post from "../post/Post";
-import main from "./data/main";
 import { makeRequest } from "../../axios";
 import "./posts.scss";
 
